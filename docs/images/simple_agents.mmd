@@ -1,0 +1,15 @@
+---
+config:
+  look: handDrawn
+  theme: neutral
+---
+flowchart LR
+    U["User"] --> S["Streamlit App"]
+    S --> R["Router Agent"]
+    R --> OAI["OpenAI<br/>(LLM + embeddings)"]
+    R --> FQ["Finance Q&amp;A<br/>RAG (Knowledge Store)"]
+    R --> TX["Tax Education<br/>RAG"]
+    R --> PF["Portfolio"]
+    R --> MK["Market"]
+    R --> GP["Goal Planning"]
+    R --> NW["News"]

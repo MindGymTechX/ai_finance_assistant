@@ -1,0 +1,7 @@
+flowchart TB
+    U["👤 User — Streamlit app<br/>Chat · Portfolio · Market · Goals"]
+    U --> R["🧭 Router<br/>one LLM call → picks 1–3 specialists"]
+    R --> A["🤖 Six specialist agents<br/>Finance Q&amp;A · Tax · Portfolio<br/>Market · Goal Planning · News"]
+    A <--> T["🔧 Tools &amp; data<br/>Knowledge base (RAG) · Live prices (yfinance) · News feeds"]
+    A --> C["✅ Synthesizer + Compliance<br/>merge answers · block advice · cite sources"]
+    C --> U

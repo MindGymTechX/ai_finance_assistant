@@ -1,0 +1,56 @@
+flowchart TB
+    subgraph PRES["Presentation layer"]
+        UI["Streamlit app — web_app/app.py<br/>Chat · Portfolio · Market · Goals"]
+        MCP["MCP server — mcp_server.py<br/>(Claude Desktop tools)"]
+    end
+
+    subgraph ORCH["Orchestration — LangGraph (workflow/graph.py)"]
+        direction LR
+        G["Guard"] --> R["Router"] --> AG["Agents<br/>(parallel)"] --> SY["Synthesizer"] --> EV["Evaluator"] --> FN["Finalize"]
+    end
+
+    subgraph AGENTS["Agents — src/agents"]
+        SPEC["6 specialists: Finance Q&amp;A · Tax · Portfolio · Market · Goal · News"]
+        REACT["ReAct loop + tool budget · prompts"]
+    end
+
+    subgraph SVC["Domain services — src/rag, src/utils"]
+        RAG["RAG: loader · chunker · vector store"]
+        MKT["Market data + cache · market hours"]
+        NEWS["News"]
+        FM["Finance math"]
+        COMP["Compliance · Guard rules"]
+    end
+
+    subgraph CORE["Core — src/core (used by all layers)"]
+        CFG["config.yaml loader"]
+        LLM["LLM factory"]
+        STT["State + schemas"]
+        LOG["Structured logging"]
+    end
+
+    subgraph DATA["Data & persistence"]
+        KB["Knowledge base<br/>55 articles + glossary"]
+        PS["Profile store<br/>(users, holdings, chats)"]
+        CKPT["SQLite checkpointer<br/>(chat memory per thread)"]
+        CACHE["Price cache — .finai"]
+    end
+
+    subgraph EXT["External APIs"]
+        OAI["OpenAI<br/>chat + embeddings"]
+        YF["yfinance<br/>(NSE/BSE)"]
+        RSS["Yahoo / Google News RSS"]
+    end
+
+    UI --> ORCH
+    MCP --> AGENTS
+    ORCH --> AGENTS
+    AGENTS --> SVC
+    SVC --> DATA
+    SVC --> EXT
+    ORCH --> CKPT
+    UI --> PS
+    LLM --> OAI
+    CORE -.-> ORCH
+    CORE -.-> AGENTS
+    CORE -.-> SVC
