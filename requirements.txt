@@ -1,0 +1,16 @@
+# Python 3.12 recommended (3.11+ supported)
+langgraph>=1.0
+langgraph-checkpoint-sqlite>=2.0
+langchain-core>=1.0
+langchain-openai>=1.0
+numpy>=1.26
+pandas>=2.1
+yfinance>=0.2.50
+streamlit>=1.40
+plotly>=5.20
+pyyaml>=6.0
+python-dotenv>=1.0
+mcp>=1.2,<2        # MCP server for Claude Desktop (FR13); 2.x renamed FastMCP, keep v1
+# dev
+pytest>=8.0
+pytest-cov>=5.0

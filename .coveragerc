@@ -1,0 +1,5 @@
+[run]
+source = src
+omit =
+    src/web_app/*
+    src/mcp_server.py

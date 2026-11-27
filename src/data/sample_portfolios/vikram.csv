@@ -1,0 +1,8 @@
+symbol,quantity,avg_price,asset_type,sector,expense_ratio,plan,current_price
+Large Cap Fund - Regular,2500,62.4,mutual_fund,,1.65,regular,78.1
+Flexi Cap Fund - Regular,1800,48.2,mutual_fund,,1.80,regular,59.6
+Nifty 50 Index Fund - Direct,3000,21.5,mutual_fund,,0.20,direct,26.3
+Short Duration Debt Fund - Regular,4000,31.0,debt_fund,,0.95,regular,33.4
+RELIANCE,25,1250,stock,,,,
+ITC,200,410,stock,,,,
+GOLDBEES,300,58,gold,Gold,0.79,,

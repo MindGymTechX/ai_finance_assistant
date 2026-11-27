@@ -1,0 +1,16 @@
+sequenceDiagram
+    actor User
+    participant R as Router
+    participant P as Portfolio Agent
+    participant N as News Agent
+    participant Sy as Synthesizer
+    participant Ev as Evaluator
+    User->>R: "Am I too exposed to IT stocks? Any news on my holdings?"
+    R->>P: route portfolio task
+    P->>P: analyze_portfolio (numbers in Python)
+    P->>N: ask_news_agent(tickers, sectors)
+    N->>N: fetch_news (Yahoo / Google News RSS)
+    N-->>P: news summary + items
+    P-->>Sy: answer + sources
+    Sy->>Ev: draft answer
+    Ev-->>User: answer + sources + disclaimer

@@ -1,0 +1,23 @@
+flowchart TD
+    U([User message]) --> G["Input Guard<br/>prompt-injection check"]
+    G -->|blocked| F["Finalize<br/>+ sources + disclaimer"]
+    G -->|ok| R{"Router<br/>one structured LLM call"}
+    R -->|direct reply| E["Evaluator<br/>advice / compliance check"]
+    R -->|"Send: 1–3 tasks in parallel"| A1["Finance Q&A<br/>(RAG)"]
+    R --> A2["Tax Education<br/>(RAG)"]
+    R --> A3["Portfolio<br/>(ReAct)"]
+    R --> A4["Market<br/>(ReAct)"]
+    R --> A5["Goal Planning<br/>(ReAct)"]
+    R --> A6["News<br/>(ReAct)"]
+    A1 --> S["Synthesizer<br/>merge answers"]
+    A2 --> S
+    A3 --> S
+    A4 --> S
+    A5 --> S
+    A6 --> S
+    S --> E
+    E -->|"fail, rewrite (max 2)"| S
+    E -->|pass / safe fallback| F
+    F --> O([Answer shown to user])
+    A3 -. "ask_news_agent (tool)" .-> A6
+    A4 -. "ask_news_agent (tool)" .-> A6
